@@ -42,5 +42,22 @@ get_24hformat_hour('11 PM')            | 23                     | 12
 
 #region bailam
 def get_24hformat_hour(hour_str):
-  return 'todo'
+  sang = "am"
+  SANG = "AM"
+  toi = "pm"
+  TOI = "PM"
+  if sang in hour_str :
+    tra_ve = hour_str.split('a')[0]
+    return tra_ve
+  elif SANG in hour_str :
+    tra_ve = hour_str.split('A')[0]
+    return tra_ve
+  elif toi in hour_str :
+    a = hour_str.split('p')[0]
+    tra_ve = int(a) + 12
+    return str(tra_ve)
+  elif TOI in hour_str :
+    a = hour_str.split('P')[0]
+    tra_ve = int(a) + 12
+    return str(tra_ve)
 #endregion bailam
