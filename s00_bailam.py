@@ -48,9 +48,11 @@ def get_24hformat_hour(hour_str):
   TOI = "PM"
   if sang in hour_str :
     tra_ve = hour_str.split('a')[0]
+    tra_ve = hour_str.strip()
     return tra_ve
   elif SANG in hour_str :
     tra_ve = hour_str.split('A')[0]
+    tra_ve = hour_str.strip()
     return tra_ve
   elif toi in hour_str :
     a = hour_str.split('p')[0]
