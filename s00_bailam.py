@@ -42,24 +42,49 @@ get_24hformat_hour('11 PM')            | 23                     | 12
 
 #region bailam
 def get_24hformat_hour(hour_str):
-  sang = "am"
-  SANG = "AM"
-  toi = "pm"
-  TOI = "PM"
-  if sang in hour_str :
-    tra_ve = hour_str.split('a')[0]
-    tra_ve = hour_str.strip()
-    return tra_ve
-  elif SANG in hour_str :
-    tra_ve = hour_str.split('A')[0]
-    tra_ve = hour_str.strip()
-    return tra_ve
-  elif toi in hour_str :
-    a = hour_str.split('p')[0]
-    tra_ve = int(a) + 12
-    return str(tra_ve)
-  elif TOI in hour_str :
-    a = hour_str.split('P')[0]
-    tra_ve = int(a) + 12
-    return str(tra_ve)
+  hour_str = hour_str.lower()
+  hour_str = hour_str.replace(" ","")
+  if "am" in hour_str :
+    if ":" in hour_str :
+      hour_str = hour_str.replace("am","")
+      hour_str = hour_str.split(":")
+      hour_str = hour_str[0] 
+      if int(hour_str[0]) == 0 :
+        hour_str = hour_str.replace("0","")
+        return hour_str 
+      return hour_str
+    else :
+      hour_str = hour_str.replace("am","")
+      hour_str = hour_str[0:2]
+      if int(hour_str[0]) == 0 :
+        hour_str = hour_str.replace("0","")
+        return hour_str
+      else :  
+        return hour_str
+  if "pm" in hour_str : 
+    hour_str = hour_str.replace("pm","")
+    if ":" in hour_str :
+        hour_str = hour_str.split(":")
+        hour_str[0] = int(hour_str[0])
+        hour_str[0] += 12
+        return str(hour_str[0]) 
+    else :
+        if int(hour_str[0]) == 0 :
+          hour_str = hour_str[0:2]
+          hour_str = hour_str.replace("0","")
+          hour_str = int(hour_str)
+          hour_str += 12
+          return str(hour_str)
+        else :
+          hour_str = int(hour_str)
+          hour_str += 12 
+          return str(hour_str)
+  else :
+    hour_str = hour_str[0:2]
+    if int(hour_str[0]) == 0 :
+      hour_str = hour_str.replace("0","")
+      if hour_str == "" : 
+        return "0"
+      return hour_str
+    return hour_str
 #endregion bailam
